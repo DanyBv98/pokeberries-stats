@@ -22,6 +22,7 @@ async def get_berries() -> list[Berry]:
             berries_urls = await __fetch_berries_urls()
             berries_data = await fetch_multiple_json(berries_urls)
             berries = [Berry.from_dict(item) for item in berries_data]
+            berries = [berry for berry in berries if berry]
             redis_instance.set(RedisKeys.BERRIES, serialize(berries), ex=app_settings.BERRIES_CACHE_TTL)
         else:
             berries = deserialize(berries_bytes)
