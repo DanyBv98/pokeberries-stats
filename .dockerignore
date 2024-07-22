@@ -5,9 +5,11 @@
 
 .env
 .env.example
+.env.test
 .venv
 __pycache__
 
 .dockerignore
 Dockerfile
 compose
+tests
