@@ -1,11 +1,9 @@
-from collections import OrderedDict
-
 from flask import Flask
 from matplotlib.figure import Figure
 
 from api.berries import get_berries
 from processing import compute_values_info
-from utils.response import figure_response, ordered_dict_response
+from utils.response import figure_response, dict_response
 
 
 app = Flask(__name__)
@@ -19,15 +17,15 @@ async def all_berry_stats():
 
     computed_data = compute_values_info(berries_growth_time)
 
-    return ordered_dict_response(OrderedDict([
-        ('berries_names', berries_names),
-        ('min_growth_time', computed_data.min),
-        ('median_growth_time', computed_data.median),
-        ('max_growth_time', computed_data.max),
-        ('variance_growth_time', computed_data.variance),
-        ('mean_growth_time', computed_data.mean),
-        ('frequency_growth_time', computed_data.frequency)
-    ]))
+    return dict_response({
+        'berries_names': berries_names,
+        'min_growth_time': computed_data.min,
+        'median_growth_time': computed_data.median,
+        'max_growth_time': computed_data.max,
+        'variance_growth_time': computed_data.variance,
+        'mean_growth_time': computed_data.mean,
+        'frequency_growth_time': computed_data.frequency
+    })
 
 @app.route('/growthTimeHistogram')
 async def growth_time_histogram():

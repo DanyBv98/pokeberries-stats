@@ -6,7 +6,7 @@ from flask import Response
 from matplotlib.figure import Figure
 
 
-def ordered_dict_response(data: OrderedDict) -> Response:
+def dict_response(data: dict) -> Response:
     # we manually serialize to json, because by letting flask
     # do the serialization using its functions, the order of the
     # keys in the dictionary won't be preserved
