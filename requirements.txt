@@ -9,3 +9,6 @@ aiohttp==3.9.5
 
 # Cache
 redis==5.0.7
+
+# Data processing
+numpy==2.0.1
