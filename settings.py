@@ -28,4 +28,4 @@ class Settings:
         self.__BERRIES_LOCK_TIMEOUT = parse_int(os.getenv('BERRIES_LOCK_TIMEOUT', '300'))
         self.__REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 
-app_settings = Settings()
+app_settings = Settings('.env' if os.getenv('TESTING', 'False') != 'True' else '.env.test')
