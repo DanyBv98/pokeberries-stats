@@ -52,7 +52,10 @@ Use pip to install the requirements:
 pip install -r requirements.txt
 ```
 
-## Running the development server
+## Usage
+
+
+### Running the development server
 
 To run the development server use:
 
@@ -66,14 +69,22 @@ If you want the webserver to reload on code changes, you may use instead:
 flask run --reload
 ```
 
-## Running the production server
+### Running tests
+
+You can run the tests using:
+
+```sh
+python run_tests.py
+```
+
+### Running the production server
 
 To run the production server you may use `waitress`:
 ```sh
 waitress-serve app:app
 ```
 
-## Docker Compose
+### Docker Compose
 
 Another way of running the application is by using Docker Compose.
 
