@@ -1,0 +1,30 @@
+services:
+  api:
+    image: danybv98/pokeberries-api:${API_VERSION}
+    # build: ..
+    restart: always
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    depends_on:
+      - redis
+    environment:
+      APP_PORT: ${APP_PORT}
+      REDIS_URL: redis://redis:6379/0
+      BERRIES_CACHE_TTL: ${BERRIES_CACHE_TTL}
+      BERRIES_LOCK_TIMEOUT: ${BERRIES_LOCK_TIMEOUT}
+    
+  redis:
+    image: redis:${REDIS_VERSION}
+    restart: always
+    ports:
+      - 127.0.0.1:6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 1s
+      retries: 10
+    volumes:
+        - redis_data:/data
+
+volumes:
+  redis_data:

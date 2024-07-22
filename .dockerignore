@@ -4,9 +4,10 @@
 .gitignore
 
 .env
+.env.example
 .venv
 __pycache__
 
 .dockerignore
 Dockerfile
-docker-compose.yml
+compose

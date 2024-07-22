@@ -65,3 +65,26 @@ If you want the webserver to reload on code changes, you may use instead:
 ```sh
 flask run --reload
 ```
+
+## Running the production server
+
+To run the production server you may use `waitress`:
+```sh
+waitress-serve app:app
+```
+
+## Docker Compose
+
+Another way of running the application is by using Docker Compose.
+
+You will need to change directory to the `compose` folder and then copy the environment file (the same as above).
+
+Then you can start the application (and redis server) using:
+
+```sh
+docker compose up
+```
+
+**Note that this command will actually pull the latest Docker image of the application from the Docker hub and will run it.**
+
+**If you would like to run your own code instead, just edit the docker-compose.yml file to build the container. (Comment the `image:` line and uncomment the `build: ` line from the api service).**
