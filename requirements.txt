@@ -1,5 +1,6 @@
 # Web server
 Flask[async]==3.0.3
+waitress==3.0.0
 
 # Configuration
 python-dotenv==1.0.1
