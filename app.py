@@ -34,4 +34,4 @@ async def all_berry_stats():
 
     # also, because now to flask it seems that we're responding with
     # a string, we need to manually add the content type
-    return Response(serialized_data, headers={'Content-Type': 'application/json'})
+    return Response(serialized_data, mimetype='application/json')
