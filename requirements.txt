@@ -1,3 +1,11 @@
-aiohttp==3.9.5
-Flask==3.0.3
+# Web server
+Flask[async]==3.0.3
+
+# Configuration
 python-dotenv==1.0.1
+
+# Requests
+aiohttp==3.9.5
+
+# Cache
+redis==5.0.7
