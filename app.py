@@ -1,10 +1,11 @@
-import json
-
 from collections import OrderedDict
-from flask import Flask, Response
+
+from flask import Flask
+from matplotlib.figure import Figure
 
 from api.berries import get_berries
 from processing import compute_values_info
+from utils.response import figure_response, ordered_dict_response
 
 
 app = Flask(__name__)
@@ -18,11 +19,7 @@ async def all_berry_stats():
 
     computed_data = compute_values_info(berries_growth_time)
 
-    # we manually serialize to json, because by letting flask
-    # do the serialization using its functions, the order of the
-    # keys in the dictionary won't be preserved
-
-    serialized_data = json.dumps(OrderedDict([
+    return ordered_dict_response(OrderedDict([
         ('berries_names', berries_names),
         ('min_growth_time', computed_data.min),
         ('median_growth_time', computed_data.median),
@@ -32,6 +29,16 @@ async def all_berry_stats():
         ('frequency_growth_time', computed_data.frequency)
     ]))
 
-    # also, because now to flask it seems that we're responding with
-    # a string, we need to manually add the content type
-    return Response(serialized_data, mimetype='application/json')
+@app.route('/growthTimeHistogram')
+async def growth_time_histogram():
+    berries = await get_berries()
+    berries_growth_time = [b.growth_time for b in berries]
+
+    figure = Figure()
+
+    ax = figure.subplots()
+    ax.hist(berries_growth_time, ec='white')
+    ax.set_xlabel('Growth time')
+    ax.set_ylabel('Berries count')
+
+    return figure_response(figure)

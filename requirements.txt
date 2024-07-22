@@ -12,3 +12,6 @@ redis==5.0.7
 
 # Data processing
 numpy==2.0.1
+
+# Graphs
+matplotlib==3.9.1
