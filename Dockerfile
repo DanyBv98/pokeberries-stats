@@ -14,6 +14,6 @@ EXPOSE ${APP_PORT}
 
 # adding shell command to suppress json arguments warning
 # (cannot use json arguments because of the environment variables)
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/sh", "-c"]
 
 ENTRYPOINT waitress-serve --port ${APP_PORT} --threads ${WEB_THREADS} app:app
